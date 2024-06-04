@@ -1,0 +1,31 @@
+.page {
+  background-color: black;
+  color: white;
+}
+
+.page__section {
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 1100px) {
+  .page__section {
+    margin: 0 20px;
+    max-width: calc(100% - 40px);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .page__section {
+    overflow-y: hidden;
+    max-width: 282px;
+  }
+}
