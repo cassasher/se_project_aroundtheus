@@ -2,20 +2,15 @@
 
 ### Overview  
 
-* Intro  
-* Figma  
-* Images  
+* Description  
+* Tech  
+ 
   
-**Intro**
+**Description**
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+Project 3 is a simple webpage with a responsive design. The webpage is set up to share photos and other content and allows for user interaction. 
   
-**Figma**  
+**Tech**  
   
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
+This project includes the use of both flexbox and grid layout, in order to create a responsive experience. The webpage is designed to look esthetically pleasing along with usability on a wide array of screens. The webpage uses an overflow property to allow for longer text, without extending the page. 
   
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
