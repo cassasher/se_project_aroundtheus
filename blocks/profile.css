@@ -30,10 +30,11 @@
 
 .profile__edit-button:hover {
   opacity: 60%;
+  cursor: pointer;
 }
 
 .profile__add-button {
-  background: transparent url(../images/Add\ Button.svg) center no-repeat;
+  background: transparent url(../images/Plus.svg) center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
@@ -74,7 +75,6 @@
   .profile {
     flex-direction: column;
     max-width: 282px;
-    overflow-y: hidden;
     align-items: center;
   }
   .profile__info {
@@ -88,7 +88,7 @@
 
   .profile__add-button {
     margin: 0;
-    width: 90%;
+    height: 50px;
     width: 282px;
     display: flex;
     justify-content: center;
@@ -101,9 +101,13 @@
   .profile__description {
     margin: auto;
     text-align: center;
+    font-size: 14px;
+    line-height: 26.63px;
   }
 
   .profile__title {
     text-align: center;
+    font-size: 22px;
+    line-height: 16.92px;
   }
 }
