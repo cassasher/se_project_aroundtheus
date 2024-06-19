@@ -1,8 +1,9 @@
 .profile {
   display: flex;
-  padding: 40px 0 51px;
   align-items: center;
   font-family: "Inter", Arial, sans-serif;
+  padding-top: 41px;
+  padding-bottom: 50px;
 }
 
 .profile__image {
@@ -15,7 +16,7 @@
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "description description";
-  grid-template-columns: minmax(auto, 373px) auto;
+  grid-template-columns: minmax(auto, 375px) auto;
   align-items: center;
   gap: 18px;
 }
@@ -26,6 +27,7 @@
   height: 24px;
   grid-area: button;
   border: 1px;
+  margin-right: 15px;
 }
 
 .profile__edit-button:hover {
@@ -38,8 +40,8 @@
   width: 150px;
   height: 50px;
   margin-left: auto;
-  border: 2px;
   border-radius: 2px;
+  border-color: white;
 }
 
 .profile__add-button:hover {
@@ -71,43 +73,45 @@
   line-height: 21.78px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .profile {
     flex-direction: column;
     max-width: 282px;
-    align-items: center;
-  }
-  .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    max-width: 282px;
+    padding: 42px 0 36px 0;
   }
 
-  .profile__add-button {
-    margin: 0;
-    height: 50px;
-    width: 282px;
-    display: flex;
-    justify-content: center;
+  .profile__image {
+    margin: auto;
+  }
+
+  .profile__info {
+    padding-top: 30px;
   }
 
   .profile__edit-button {
-    display: flex;
+    width: 18px;
+    height: 18px;
+    border: 1px #ffff solid;
   }
 
-  .profile__description {
+  .profile__add-button {
     margin: auto;
-    text-align: center;
-    font-size: 14px;
-    line-height: 26.63px;
+    width: 282px;
   }
 
   .profile__title {
-    text-align: center;
     font-size: 22px;
-    line-height: 16.92px;
+    line-height: 26.63px;
+    text-align: center;
+    padding-left: 62px;
+    overflow: visible;
+  }
+
+  .profile__description {
+    font-size: 14px;
+    line-height: 16.94px;
+    text-align: center;
+    padding-left: 19px;
+    padding-bottom: 36px;
   }
 }
