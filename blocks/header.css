@@ -7,9 +7,15 @@
 
   @media screen and (max-width: 620px) {
     .header {
-      margin-top: 28px;
-      height: 24px;
+      display: flex;
       padding-bottom: 32px;
+      padding-top: 0;
+      margin-top: 28px;
+    }
+    .header__image {
+      margin-left: 27px;
+      height: 24px;
+      width: 126px;
     }
   }
 }
