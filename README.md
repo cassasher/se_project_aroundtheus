@@ -2,9 +2,6 @@
 
 ### Overview
 
-- Description
-- Tech
-
 **Description**
 
 Project 3 is a simple webpage with a responsive design. The webpage is set up to share photos and other content and allows for user interaction.
