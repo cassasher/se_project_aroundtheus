@@ -4,18 +4,18 @@
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
   display: flex;
   padding-bottom: 40px;
+}
 
-  @media screen and (max-width: 620px) {
-    .header {
-      display: flex;
-      padding-bottom: 32px;
-      padding-top: 0;
-      margin-top: 28px;
-    }
-    .header__image {
-      margin-left: 27px;
-      height: 24px;
-      width: 126px;
-    }
+@media screen and (max-width: 680px) {
+  .header {
+    display: flex;
+    padding-bottom: 32px;
+    padding-top: 28px;
+    margin-top: 0;
+  }
+  .header__image {
+    margin-left: 27px;
+    height: 24px;
+    width: 126px;
   }
 }
