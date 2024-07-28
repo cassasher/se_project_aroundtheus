@@ -65,6 +65,10 @@ profileModalCloseBtn.addEventListener("click", () => {
   profileEditModal.classList.remove("modal_opened");
 });
 
+function closeProfileModal() {
+  profileEditModal.classList.remove("modal_opened");
+}
+
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -74,5 +78,5 @@ profileEditForm.addEventListener("submit", (e) => {
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
+  cardListEl.append(cardElement);
 });

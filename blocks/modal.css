@@ -86,12 +86,15 @@
     width: 26px;
     height: 26px;
     right: 0;
-    top: -50px;
+    top: -40px;
+    position: absolute;
   }
 
   .modal__container {
     width: 282px;
     padding: 25px 22px 25px 22px;
+    margin-top: 123px;
+    position: relative;
   }
 
   .modal__input {
@@ -105,5 +108,6 @@
   .modal__heading {
     margin-top: 0;
     margin-bottom: 75px;
+    font-size: 18px;
   }
 }
