@@ -23,6 +23,7 @@
   padding: 36px;
   border-radius: 10px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .modal__form {
@@ -98,11 +99,13 @@
   }
 
   .modal__input {
-    width: 282px;
+    width: 100%;
   }
 
   .modal__button {
-    width: 282px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 16.94px;
   }
 
   .modal__heading {
