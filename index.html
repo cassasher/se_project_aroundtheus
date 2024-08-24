@@ -93,6 +93,19 @@
       </div>
     </div>
 
+    <!-- Preview Modal -->
+
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__container modal__container_type_preview">
+        <button
+          class="modal__close modal__close_preview"
+          id="preview-close"
+        ></button>
+        <img src="" alt="" class="modal__image" id="preview-open" />
+        <p class="modal__description"></p>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
@@ -100,6 +113,7 @@
           <h2 class="card__name"></h2>
           <button type="button" class="card__like-button"></button>
         </div>
+        <button type="button" class="card__delete-button"></button>
       </li>
     </template>
 
