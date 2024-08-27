@@ -99,16 +99,12 @@ const previewCloseButton = document.querySelector(
 
 // Functions
 
-function closeProfileModal() {
-  profileEditModal.classList.remove("modal_opened");
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
 }
 
-function openPreviewModal() {
-  previewImageModal.classList.add("modal_opened");
-}
-
-function closePreviewModal() {
-  previewImageModal.classList.remove("modal_opened");
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
 }
 
 function renderCard(cardData) {
@@ -123,7 +119,8 @@ function handleAddCardFormSubmit(evt) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
-  addCardModal.classList.remove("modal_opened");
+  // addCardModal.classList.remove("modal_opened");
+  evt.target.reset();
 }
 
 //Event Listeners
