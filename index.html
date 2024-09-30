@@ -47,36 +47,39 @@
     <!-- Edit Modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button type="button" class="modal__close"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
           <input
             type="text"
             placeholder="Jacques Cousteau"
             name="title"
-            class="modal__input popup__input"
+            class="modal__input"
             id="profile-title-input"
             minlength="2"
             maxlength="40"
             required
           />
-          <span class="modal__error" id="profile-title-input-error"></span>
+          <span
+            class="modal__input_type_error modal__error_visible"
+            id="profile-title-input-error"
+          ></span>
           <input
             type="text"
             placeholder="Explorer"
             name="description"
-            class="modal__input popup__input"
+            class="modal__input"
             id="profile-description-input"
             minlength="2"
             maxlength="200"
             required
           />
           <span
-            class="modal__error"
+            class="modal__input_type_error modal__error_visible"
             id="profile-description-input-error"
           ></span>
 
-          <button class="modal__button" id="popup__button">Save</button>
+          <button class="modal__button modal__button_disabled">Save</button>
         </form>
       </div>
     </div>
@@ -90,24 +93,29 @@
             type="text"
             placeholder="Title"
             name="title"
-            class="modal__input modal__input_type_title popup__input"
-            id="card-title-input popup__input_type_error popup__error_visible"
-            minlength="2"
-            maxlength="40"
+            class="modal__input modal__input_type_card-title"
+            id="card-title-input"
+            minlength="1"
+            maxlength="30"
             required
           />
-          <span class="modal__error" id="card-title-input-error"></span>
+          <span
+            class="modal__input_type_error modal__error_visible"
+            id="card-title-input-error"
+          ></span>
           <input
             type="text"
             placeholder="Image URL"
             name="url"
-            class="modal__input modal__input_type_url popup__input"
+            class="modal__input modal__input_type_url"
             id="card-url-input"
+            required
           />
-          <span class="modal__error" id="card-url-input-error"></span>
-          <button
-            class="modal__button popup__button popup__button_disabled disabled"
-          >
+          <span
+            class="modal__input_type_error modal__error_visible"
+            id="card-url-input-error"
+          ></span>
+          <button type="button" class="modal__button modal__button_disabled">
             Save
           </button>
         </form>
@@ -137,7 +145,8 @@
         <button type="button" class="card__delete-button"></button>
       </li>
     </template>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validation.js"></script>
+
+    <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
