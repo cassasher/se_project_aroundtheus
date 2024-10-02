@@ -43,7 +43,7 @@
         </p>
       </footer>
     </div>
-
+    <div class="modal__overlay""></div>
     <!-- Edit Modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
@@ -89,32 +89,36 @@
         <button class="modal__close"></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form" id="add-card-form">
-          <input
-            type="text"
-            placeholder="Title"
-            name="title"
-            class="modal__input modal__input_type_card-title"
-            id="card-title-input"
-            minlength="1"
-            maxlength="30"
-            required
-          />
-          <span
-            class="modal__input_type_error modal__error_visible"
-            id="card-title-input-error"
-          ></span>
-          <input
-            type="text"
-            placeholder="Image URL"
-            name="url"
-            class="modal__input modal__input_type_url"
-            id="card-url-input"
-            required
-          />
-          <span
-            class="modal__input_type_error modal__error_visible"
-            id="card-url-input-error"
-          ></span>
+          <div class="modal__form-fields">
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              class="modal__input modal__input_type_card-title"
+              id="card-title-input"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span
+              class="modal__input_type_error modal__error_visible"
+              id="card-title-input-error"
+            ></span>
+          </div>
+          <div class="modal__form-fields">
+            <input
+              type="url"
+              placeholder="Image URL"
+              name="url"
+              class="modal__input modal__input_type_url"
+              id="card-url-input"
+              required
+            />
+            <span
+              class="modal__input_type_error modal__error_visible"
+              id="card-url-input-error"
+            ></span>
+          </div>
           <button type="button" class="modal__button modal__button_disabled">
             Save
           </button>

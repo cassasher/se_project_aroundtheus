@@ -101,10 +101,14 @@ const previewCloseButton = document.querySelector(
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+  document.removeEventListener("mousedown", handleOverlayClick);
+  document.removeEventListener("keydown", handleEscapeClose);
 }
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.addEventListener("mousedown", handleOverlayClick);
+  document.addEventListener("keydown", handleEscapeClose);
 }
 
 function renderCard(cardData) {
@@ -121,6 +125,21 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link }, cardListEl);
   closePopup(addCardModal);
   evt.target.reset();
+}
+
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closePopup(evt.target);
+  }
+}
+
+function handleEscapeClose(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closePopup(openedModal);
+    }
+  }
 }
 
 //Event Listeners
