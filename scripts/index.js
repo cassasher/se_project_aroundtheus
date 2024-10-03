@@ -137,7 +137,7 @@ function handleAddCardFormSubmit(evt) {
 
   closePopup(addCardModal);
 
-  addCardFormElement.reset();
+  evt.target.reset();
 }
 
 function handleOverlayClick(evt) {

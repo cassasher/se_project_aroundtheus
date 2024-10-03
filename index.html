@@ -43,7 +43,7 @@
         </p>
       </footer>
     </div>
-    <div class="modal__overlay""></div>
+    <div class="modal__overlay"></div>
     <!-- Edit Modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
@@ -83,7 +83,7 @@
         </form>
       </div>
     </div>
-    <!-- Add card modal removed type_card-title in card title input class -->
+    <!-- Add card modal -->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__close"></button>
@@ -94,7 +94,7 @@
               type="text"
               placeholder="Title"
               name="title"
-              class="modal__input modal__input_type_title" 
+              class="modal__input modal__input_type_card-title"
               id="card-title-input"
               minlength="2"
               maxlength="40"
@@ -119,7 +119,7 @@
               id="card-url-input-error"
             ></span>
           </div>
-          <button type="button" class="modal__button">
+          <button type="button" class="modal__button modal__button_disabled">
             Save
           </button>
         </form>
