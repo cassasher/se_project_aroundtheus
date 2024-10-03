@@ -101,6 +101,7 @@ const previewCloseButton = document.querySelector(
 
 function closePopup(popup) {
   popup.classList.remove("modal_opened");
+
   document.removeEventListener("mousedown", handleOverlayClick);
   document.removeEventListener("keydown", handleEscapeClose);
 }
@@ -113,6 +114,7 @@ function openPopup(popup) {
 
 function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
+
   cardListEl.prepend(cardElement);
 }
 
@@ -120,11 +122,22 @@ function renderCard(cardData) {
 
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
+
+  const cardTitleInput = addCardFormElement.querySelector(
+    ".modal__input_type_title"
+  );
+  const cardUrlInput = addCardFormElement.querySelector(
+    ".modal__input_type_url"
+  );
+
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  renderCard({ name, link }, cardListEl);
+
+  renderCard({ name, link });
+
   closePopup(addCardModal);
-  evt.target.reset();
+
+  addCardFormElement.reset();
 }
 
 function handleOverlayClick(evt) {

@@ -4,7 +4,6 @@ function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   inputEl.classList.add(inputErrorClass);
   errorMessageEl.textContent = inputEl.validationMessage;
   errorMessageEl.classList.add(errorClass);
-  console.log(inputEl.id);
 }
 
 //can also use template literals -- `#${inputEl.id}-error`
