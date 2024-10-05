@@ -52,6 +52,10 @@
   gap: 30px;
 }
 
+.modal__form-fields {
+  width: min-content;
+}
+
 .modal__input {
   width: 358px;
   height: 27.26px;

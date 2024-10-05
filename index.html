@@ -50,34 +50,38 @@
         <button type="button" class="modal__close"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
-          <input
-            type="text"
-            placeholder="Jacques Cousteau"
-            name="title"
-            class="modal__input"
-            id="profile-title-input"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-          <span
-            class="modal__input_type_error modal__error_visible"
-            id="profile-title-input-error"
-          ></span>
-          <input
-            type="text"
-            placeholder="Explorer"
-            name="description"
-            class="modal__input"
-            id="profile-description-input"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span
-            class="modal__input_type_error modal__error_visible"
-            id="profile-description-input-error"
-          ></span>
+          <div class="modal__form-fields">
+            <input
+              type="text"
+              placeholder="Jacques Cousteau"
+              name="title"
+              class="modal__input"
+              id="profile-title-input"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span
+              class="modal__input_type_error modal__error_visible"
+              id="profile-title-input-error"
+            ></span>
+          </div>
+          <div class="modal__form-fields">
+            <input
+              type="text"
+              placeholder="Explorer"
+              name="description"
+              class="modal__input"
+              id="profile-description-input"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span
+              class="modal__input_type_error modal__error_visible"
+              id="profile-description-input-error"
+            ></span>
+          </div>
 
           <button class="modal__button modal__button_disabled">Save</button>
         </form>
@@ -94,7 +98,7 @@
               type="text"
               placeholder="Title"
               name="title"
-              class="modal__input modal__input_type_card-title"
+              class="modal__input modal__input_type_title"
               id="card-title-input"
               minlength="2"
               maxlength="40"
@@ -119,9 +123,7 @@
               id="card-url-input-error"
             ></span>
           </div>
-          <button type="button" class="modal__button modal__button_disabled">
-            Save
-          </button>
+          <button class="modal__button modal__button_disabled">Save</button>
         </form>
       </div>
     </div>
