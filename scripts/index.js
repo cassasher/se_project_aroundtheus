@@ -123,13 +123,6 @@ function renderCard(cardData) {
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
 
-  const cardTitleInput = addCardFormElement.querySelector(
-    ".modal__input_type_title"
-  );
-  const cardUrlInput = addCardFormElement.querySelector(
-    ".modal__input_type_url"
-  );
-
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
 

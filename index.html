@@ -1,3 +1,6 @@
+<!-- REVIEWER - Can you please explain the BEM errors? Unclear on using modifiers 
+without blocks or elements -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +46,7 @@
         </p>
       </footer>
     </div>
-    <div class="modal__overlay"></div>
+    <div class="modal-overlay"></div>
     <!-- Edit Modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
@@ -105,7 +108,7 @@
               required
             />
             <span
-              class="modal__input_type_error modal__error_visible"
+              class="modal__error_visible"
               id="card-title-input-error"
             ></span>
           </div>
@@ -118,10 +121,7 @@
               id="card-url-input"
               required
             />
-            <span
-              class="modal__input_type_error modal__error_visible"
-              id="card-url-input-error"
-            ></span>
+            <span class="modal__error_visible" id="card-url-input-error"></span>
           </div>
           <button class="modal__button modal__button_disabled">Save</button>
         </form>
