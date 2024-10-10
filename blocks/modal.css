@@ -157,14 +157,14 @@
   }
 
   .modal__container {
-    width: 282px;
+    width: 100%;
     padding: 25px 22px 25px 22px;
     margin-top: 123px;
     position: relative;
   }
 
   .modal__input {
-    width: 100%;
+    max-width: 282px;
   }
 
   .modal__button {
