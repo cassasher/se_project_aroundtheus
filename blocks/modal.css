@@ -92,7 +92,7 @@
 
 .modal__close_preview {
   top: -10px;
-  right: -10px;
+  right: -85px;
 }
 
 .modal__heading {
@@ -187,10 +187,9 @@
     font-size: 18px;
   }
 
-
   .modal__container_type_preview .modal__close {
-    right: -15px;
-    top: -10px;
+    right: -5px;
+    top: 15px;
   }
 
   .modal__container_type_preview .modal__image {
@@ -202,3 +201,4 @@
   .modal__form-fields {
     margin-bottom: 18px;
   }
+}
