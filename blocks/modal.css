@@ -187,9 +187,6 @@
     font-size: 18px;
   }
 
-  /* .modal__container_type_preview {
-    max-width: calc(100% - 40px);
-  } */
 
   .modal__container_type_preview .modal__close {
     right: -15px;
