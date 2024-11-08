@@ -130,7 +130,6 @@ function openPopup(popup) {
 }
 
 function renderCard(cardData) {
-  // const cardElement = getCardElement(cardData);
   const card = new Card(cardData, "#card-template");
   const cardElement = card.getView();
 
