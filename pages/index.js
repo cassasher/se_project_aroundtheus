@@ -1,3 +1,6 @@
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -30,20 +33,19 @@ const initialCards = [
   },
 ];
 
+const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+
 // Main - applies to all cards
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__name");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const cardDelete = cardElement.querySelector(".card__delete-button");
-
-  cardDelete.addEventListener("click", () => cardElement.remove());
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
 
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
@@ -97,6 +99,21 @@ const previewCloseButton = document.querySelector(
   "#preview-image-modal .modal__close"
 );
 
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(settings, profileEditForm);
+const addCardFormValidator = new FormValidator(settings, addCardFormElement);
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
 // Functions
 
 function closePopup(popup) {
@@ -113,7 +130,9 @@ function openPopup(popup) {
 }
 
 function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
+  // const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, "#card-template");
+  const cardElement = card.getView();
 
   cardListEl.prepend(cardElement);
 }
