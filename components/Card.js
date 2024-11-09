@@ -1,8 +1,9 @@
 export default class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link }, cardSelector, openPopup) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._openPopup = openPopup;
   }
 
   _setEventListeners() {
@@ -26,6 +27,13 @@ export default class Card {
     });
   }
 
+  // _handleImageClick() {
+  //   openPopup(this._previewImageModal);
+  //   this._previewCardImage.src = this._link;
+  //   this._previewCardImage.alt = this._name;
+  //   this._previewDescription.textContent = this._name;
+  // }
+
   _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
@@ -36,10 +44,18 @@ export default class Card {
   }
 
   _handleImageClick() {
-    openPopup(previewImageModal);
+    const previewImageModal = document.querySelector("#preview-image-modal");
+    const previewCardImage = document.querySelector(
+      "#preview-image-modal .modal__image"
+    );
+    const previewDescription = document.querySelector(
+      "#preview-image-modal .modal__description"
+    );
+
     previewCardImage.src = this._link;
     previewCardImage.alt = this._name;
     previewDescription.textContent = this._name;
+    this._openPopup(previewImageModal);
   }
 
   getView() {
