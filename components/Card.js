@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, openPopup) {
+  constructor({ name, link }, cardSelector, handleImageClick) {
+    console.log("Creating card with:", { name, link });
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    this._openPopup = openPopup;
+    this._imageClick = handleImageClick;
   }
 
   _setEventListeners() {
@@ -23,16 +24,9 @@ export default class Card {
     });
 
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick();
+      this._imageClick();
     });
   }
-
-  // _handleImageClick() {
-  //   openPopup(this._previewImageModal);
-  //   this._previewCardImage.src = this._link;
-  //   this._previewCardImage.alt = this._name;
-  //   this._previewDescription.textContent = this._name;
-  // }
 
   _handleDeleteCard() {
     this._cardElement.remove();
@@ -41,21 +35,6 @@ export default class Card {
 
   _handleLikeButton() {
     this._likeButton.classList.toggle("card__like-button_active");
-  }
-
-  _handleImageClick() {
-    const previewImageModal = document.querySelector("#preview-image-modal");
-    const previewCardImage = document.querySelector(
-      "#preview-image-modal .modal__image"
-    );
-    const previewDescription = document.querySelector(
-      "#preview-image-modal .modal__description"
-    );
-
-    previewCardImage.src = this._link;
-    previewCardImage.alt = this._name;
-    previewDescription.textContent = this._name;
-    this._openPopup(previewImageModal);
   }
 
   getView() {
