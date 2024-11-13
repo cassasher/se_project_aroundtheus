@@ -33,10 +33,12 @@ const initialCards = [
   },
 ];
 
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
+// const cardData = {
+//   name: "Yosemite Valley",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+// };
+
+const cardData = initialCards[0];
 
 // DOM
 
@@ -93,7 +95,7 @@ addCardFormValidator.enableValidation();
 
 // Functions
 
-function handleImageClick(cardImage, cardTitle) {
+function handleImageClick(data, cardTitle) {
   const previewImageModal = document.querySelector("#preview-image-modal");
   const previewCardImage = document.querySelector(
     "#preview-image-modal .modal__image"
@@ -101,8 +103,8 @@ function handleImageClick(cardImage, cardTitle) {
   const previewDescription = document.querySelector(
     "#preview-image-modal .modal__description"
   );
-  previewCardImage.src = cardData.link;
-  previewCardImage.alt = cardData.name;
+  previewCardImage.src = data.link;
+  previewCardImage.alt = data.name;
   previewDescription.textContent = cardTitle;
   openPopup(previewImageModal);
 }
@@ -120,10 +122,13 @@ function openPopup(popup) {
   document.addEventListener("keydown", handleEscapeClose);
 }
 
-function renderCard(cardData) {
-  console.log("cardData:", cardData);
+function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  const cardElement = card.getView();
+  return card.getView();
+}
+
+function renderCard(cardData) {
+  const cardElement = createCard(cardData);
 
   cardListEl.prepend(cardElement);
 }
@@ -180,6 +185,7 @@ profileEditForm.addEventListener("submit", (e) => {
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addNewCardBtn.addEventListener("click", () => {
+  addCardFormValidator.resetValidation();
   openPopup(addCardModal);
 });
 
