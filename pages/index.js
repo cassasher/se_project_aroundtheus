@@ -33,11 +33,6 @@ const initialCards = [
   },
 ];
 
-// const cardData = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-// };
-
 const cardData = initialCards[0];
 
 // DOM
@@ -96,16 +91,9 @@ addCardFormValidator.enableValidation();
 // Functions
 
 function handleImageClick(data, cardTitle) {
-  const previewImageModal = document.querySelector("#preview-image-modal");
-  const previewCardImage = document.querySelector(
-    "#preview-image-modal .modal__image"
-  );
-  const previewDescription = document.querySelector(
-    "#preview-image-modal .modal__description"
-  );
   previewCardImage.src = data.link;
   previewCardImage.alt = data.name;
-  previewDescription.textContent = cardTitle;
+  previewDescription.textContent = data.name;
   openPopup(previewImageModal);
 }
 
@@ -140,12 +128,10 @@ function handleAddCardFormSubmit(evt) {
 
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-
   renderCard({ name, link });
-
   closePopup(addCardModal);
-
   evt.target.reset();
+  addCardFormValidator.resetValidation();
 }
 
 function handleOverlayClick(evt) {
@@ -179,13 +165,14 @@ profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+  editFormValidator.reset();
   closePopup(profileEditModal);
 });
 
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addNewCardBtn.addEventListener("click", () => {
-  addCardFormValidator.resetValidation();
+  addCardFormValidator.reset();
   openPopup(addCardModal);
 });
 
