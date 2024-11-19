@@ -131,7 +131,7 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link });
   closePopup(addCardModal);
   evt.target.reset();
-  addCardFormValidator.disableButton();
+  addCardFormValidator._disableButton();
 }
 
 function handleOverlayClick(evt) {
@@ -162,17 +162,17 @@ profileModalCloseBtn.addEventListener("click", () => {
 });
 
 profileEditForm.addEventListener("submit", (e) => {
+  editFormValidator.resetValidation();
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  editFormValidator.reset();
+
   closePopup(profileEditModal);
 });
 
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addNewCardBtn.addEventListener("click", () => {
-  addCardFormValidator.resetValidation();
   openPopup(addCardModal);
 });
 
