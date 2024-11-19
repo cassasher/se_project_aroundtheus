@@ -131,7 +131,7 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link });
   closePopup(addCardModal);
   evt.target.reset();
-  addCardFormValidator.resetValidation();
+  addCardFormValidator.disableButton();
 }
 
 function handleOverlayClick(evt) {
@@ -172,7 +172,7 @@ profileEditForm.addEventListener("submit", (e) => {
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addNewCardBtn.addEventListener("click", () => {
-  addCardFormValidator.reset();
+  addCardFormValidator.resetValidation();
   openPopup(addCardModal);
 });
 
