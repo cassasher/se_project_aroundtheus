@@ -13,7 +13,7 @@ export default class FormValidator {
     );
   }
 
-  _disableButton() {
+  disableButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }
@@ -50,7 +50,7 @@ export default class FormValidator {
     const hasInvalidInput = this._hasInvalidInput();
 
     if (hasInvalidInput) {
-      this._disableButton();
+      this.disableButton();
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
@@ -73,7 +73,7 @@ export default class FormValidator {
     this._inputEls.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });
-    this._disableButton();
+    this.disableButton();
   }
 
   reset() {
