@@ -1,12 +1,9 @@
-// I AM NOT SHOWING ANY ERRORS IN CONSOLE OR UNDER ISSUES WHEN INSPECTING. PLEASE ADVISE
-// I DID CHANGE THE NAMES OF EACH MODULE AND HAD TO REIMPORT THEM
-
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import Popup from "./components/Popup.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import Section from "./components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
 import UserInfo from "../components/userinfo.js";
 
 import "../pages/index.css";
