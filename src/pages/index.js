@@ -117,15 +117,17 @@ newCardPopup.setEventListeners();
 imagePopup.setEventListeners();
 
 const cardSection = new Section(
-  initialCards,
-  (item) => {
-    const card = createCard(item);
-    cardSection.addItem(card);
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item);
+      cardSection.addItem(card);
+    },
   },
   ".cards__list"
 );
 
-cardSection.addItem(card);
+cardSection.renderItems();
 
 // Functions
 
