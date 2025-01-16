@@ -96,17 +96,22 @@ editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
-  renderCard({
+  const card = createCard({
     name: inputValues.title,
     link: inputValues.url,
   });
+  cardSection.addItem(card);
 });
+
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   (inputValues) => {
-    (profileTitle.textContent = inputValues.name),
-      (profileDescription.textContent = inputValues.description);
+    userInfo.setUserInfo({
+      name: inputValues.title,
+      description: inputValues.description,
+    });
   }
 );
 
