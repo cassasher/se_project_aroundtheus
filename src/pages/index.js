@@ -65,6 +65,7 @@ const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
   });
   cardSection.addItem(card);
   addCardFormValidator.disableButton();
+  newCardPopup.close();
 });
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
