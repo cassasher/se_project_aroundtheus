@@ -95,8 +95,6 @@ const cardSection = new Section(
   ".cards__list"
 );
 
-cardSection.renderItems();
-
 // Functions
 
 function handleImageClick(data) {
