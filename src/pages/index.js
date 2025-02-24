@@ -7,12 +7,45 @@ import Section from "../components/section.js";
 import UserInfo from "../components/userinfo.js";
 import Constants from "../utils/constants.js";
 import "../pages/index.css";
+import Api from "../components/Api.js";
 
 const constants = new Constants();
-const initialCards = constants.getInitialCards();
+// const initialCards = constants.getInitialCards();
 const settings = constants.getSettings();
 
-const cardData = initialCards[0];
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "53b5b8b9-71f3-4b89-b2db-41f166f0eb38",
+    "Content-Type": "application/json",
+  },
+});
+
+let cardSection;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    console.log("API Response - userData:", userData);
+    console.log("API Response - cards:", cards);
+    userInfo.setUserInfo({
+      name: userData.name,
+      description: userData.about,
+    });
+
+    cardSection = new Section(
+      {
+        items: cards,
+        renderer: (item) => {
+          const card = createCard(item);
+          cardSection.addItem(card);
+        },
+      },
+      ".cards__list"
+    );
+
+    cardSection.renderItems();
+  })
+  .catch((err) => console.error(err));
 
 // DOM
 
@@ -59,13 +92,18 @@ editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
-  const card = createCard({
-    name: inputValues.title,
-    link: inputValues.url,
-  });
-  cardSection.addItem(card);
-  addCardFormValidator.disableButton();
-  newCardPopup.close();
+  api
+    .addCard({
+      name: inputValues.title,
+      link: inputValues.url,
+    })
+    .then((cardData) => {
+      const card = createCard(cardData);
+      cardSection.addItem(card);
+      addCardFormValidator.disableButton();
+      newCardPopup.close();
+    })
+    .catch((err) => console.error(err));
 });
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
@@ -73,10 +111,19 @@ const userInfo = new UserInfo(".profile__title", ".profile__description");
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   (inputValues) => {
-    userInfo.setUserInfo({
-      name: inputValues.title,
-      description: inputValues.description,
-    });
+    api // putting api here b/c the form needs to load first, before changing info. if it's alone (like above) the form wont know about the new info
+      .setUserInfo({
+        name: inputValues.title,
+        description: inputValues.description,
+      })
+      .then((userData) => {
+        userInfo.setUserInfo({
+          name: inputValues.title,
+          description: inputValues.description,
+        });
+        profileEditPopup.close();
+      })
+      .catch((err) => console.error(err));
   }
 );
 
@@ -86,16 +133,16 @@ profileEditPopup.setEventListeners();
 newCardPopup.setEventListeners();
 imagePopup.setEventListeners();
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item);
-      cardSection.addItem(card);
-    },
-  },
-  ".cards__list"
-);
+// const cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (item) => {
+//       const card = createCard(item);
+//       cardSection.addItem(card);
+//     },
+//   },
+//   ".cards__list"
+// );
 
 // Functions
 
@@ -118,5 +165,3 @@ profileEditBtn.addEventListener("click", () => {
 addNewCardBtn.addEventListener("click", () => {
   newCardPopup.open();
 });
-
-cardSection.renderItems();
