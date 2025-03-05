@@ -16,11 +16,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="profileimage"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="profileimage"
+              class="profile__image"
+            />
+            <button type="button" class="profile__image-edit"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -175,7 +178,7 @@
       </div>
     </div>
 
-    <!-- Delete Card Confirmation Modal -->
+    <!-- Delete Card  Modal -->
     <div class="modal" id="delete-card-modal">
       <div class="modal__container">
         <button type="button" class="modal__close"></button>

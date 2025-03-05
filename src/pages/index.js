@@ -3,26 +3,29 @@ import Card from "../components/Card.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import Section from "../components/section.js";
-import UserInfo from "../components/userinfo.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/Userinfo.js";
 import Constants from "../utils/constants.js";
 import "../pages/index.css";
 import Api from "../components/Api.js";
 
 const constants = new Constants();
-// const initialCards = constants.getInitialCards();
 const settings = constants.getSettings();
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "53b5b8b9-71f3-4b89-b2db-41f166f0eb38",
+    authorization: "f8087b3e-aa9a-4812-a9d1-34487ec72ba2",
     "Content-Type": "application/json",
   },
 });
 
-let cardSection;
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
+// api
+
+let cardSection;
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     console.log("API Response - userData:", userData);
@@ -32,23 +35,29 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       description: userData.about,
     });
 
+    const profileImage = document.querySelector(".profile__image");
+    if (userData.avatar) {
+      profileImage.src = userData.avatar;
+    }
+
     cardSection = new Section(
       {
         items: cards,
         renderer: (item) => {
+          console.log("Rendering card item:", item);
           const card = createCard(item);
+          console.log("Card created, adding to section:", card);
           cardSection.addItem(card);
         },
       },
       ".cards__list"
     );
 
+    console.log("CardSection created, rendering items");
     cardSection.renderItems();
   })
-  .catch((err) => console.error(err));
-
-// DOM
-
+  .catch((err) => console.error("Error in Promise.all:", err));
+// DOM elements
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
@@ -85,12 +94,14 @@ const previewCloseButton = document.querySelector(
   "#preview-image-modal .modal__close"
 );
 
+// form validation
 const editFormValidator = new FormValidator(settings, profileEditForm);
 const addCardFormValidator = new FormValidator(settings, addCardFormElement);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
+// popup
 const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
   api
     .addCard({
@@ -106,17 +117,15 @@ const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
     .catch((err) => console.error(err));
 });
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
-
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   (inputValues) => {
-    api // putting api here b/c the form needs to load first, before changing info. if it's alone (like above) the form wont know about the new info
+    api
       .setUserInfo({
         name: inputValues.title,
-        description: inputValues.description,
+        about: inputValues.description,
       })
-      .then((userData) => {
+      .then((res) => {
         userInfo.setUserInfo({
           name: inputValues.title,
           description: inputValues.description,
@@ -129,29 +138,73 @@ const profileEditPopup = new PopupWithForm(
 
 const imagePopup = new PopupWithImage("#preview-image-modal");
 
+let cardToDelete = null; //trying to use this to clear card
+
+const deleteCardPopup = new PopupWithForm(
+  "#delete-card-modal",
+  (inputValues) => {
+    if (!cardToDelete) return;
+
+    api
+      .deleteCard(cardToDelete.getId())
+      .then(() => {
+        cardToDelete.deleteCard();
+        deleteCardPopup.close();
+        cardToDelete = null;
+      })
+      .catch((err) => console.error(err));
+  }
+);
+deleteCardPopup.setEventListeners();
+
+function handleDeleteClick(card) {
+  cardToDelete = card;
+  deleteCardPopup.open();
+}
+
+// event listeners
 profileEditPopup.setEventListeners();
 newCardPopup.setEventListeners();
 imagePopup.setEventListeners();
 
-// const cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (item) => {
-//       const card = createCard(item);
-//       cardSection.addItem(card);
-//     },
-//   },
-//   ".cards__list"
-// );
-
-// Functions
-
+// functions
 function handleImageClick(data) {
   imagePopup.open(data);
 }
 
+function handleLikeClick(card) {
+  const cardId = card.getId();
+  const isLiked = card.isLiked();
+
+  if (isLiked) {
+    api
+      .deleteCardLike(cardId)
+      .then((updatedCard) => {
+        card.setLikeStatus(updatedCard.isLiked);
+      })
+      .catch((err) => console.error(err));
+  } else {
+    api
+      .addCardLike(cardId)
+      .then((updatedCard) => {
+        card.setLikeStatus(updatedCard.isLiked);
+      })
+      .catch((err) => console.error(err));
+  }
+}
+
+function handleDeleteClick(card) {
+  deleteCardPopup.open(card);
+}
+
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleLikeClick,
+    handleDeleteClick
+  );
   return card.getView();
 }
 
