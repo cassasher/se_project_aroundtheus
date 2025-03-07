@@ -3,16 +3,17 @@ export default class Card {
     { name, link, _id, isLiked },
     cardSelector,
     handleImageClick,
-    handleLikeClick
+    handleLikeClick,
+    handleDeleteClick
   ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._imageClick = handleImageClick;
-    this._id = this._id;
-    this.isLiked = this.isLiked;
-    this.handleLikeClick = handleImageClick;
-    this._handleDeleteClick = handleDeleteCard;
+    this._id = _id;
+    this.isLiked = isLiked;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getTemplate() {
@@ -57,6 +58,10 @@ export default class Card {
         link: this._link,
       });
     });
+  }
+
+  isLiked() {
+    return this.isLiked;
   }
 
   _handleDeleteCard() {

@@ -42,7 +42,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.description,
+        about: data.about, // expecting api
       }),
     }).then((res) => {
       if (res.ok) {

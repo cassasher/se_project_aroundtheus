@@ -28,8 +28,6 @@ const userInfo = new UserInfo(".profile__title", ".profile__description");
 let cardSection;
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
-    console.log("API Response - userData:", userData);
-    console.log("API Response - cards:", cards);
     userInfo.setUserInfo({
       name: userData.name,
       description: userData.about,
@@ -44,16 +42,14 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       {
         items: cards,
         renderer: (item) => {
-          console.log("Rendering card item:", item);
           const card = createCard(item);
-          console.log("Card created, adding to section:", card);
+
           cardSection.addItem(card);
         },
       },
       ".cards__list"
     );
 
-    console.log("CardSection created, rendering items");
     cardSection.renderItems();
   })
   .catch((err) => console.error("Error in Promise.all:", err));
@@ -103,6 +99,9 @@ addCardFormValidator.enableValidation();
 
 // popup
 const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
+  const submitButton = document.querySelector("#add-card-modal .modal__button");
+  submitButton.textContent = "Saving...";
+
   api
     .addCard({
       name: inputValues.title,
@@ -120,6 +119,10 @@ const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   (inputValues) => {
+    const submitButton = document.querySelector(
+      "#profile-edit-modal .modal__button"
+    );
+    submitButton.textContent = "Saving...";
     api
       .setUserInfo({
         name: inputValues.title,
@@ -132,7 +135,10 @@ const profileEditPopup = new PopupWithForm(
         });
         profileEditPopup.close();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => {
+        submitButton.textContent = "Save";
+      });
   }
 );
 
@@ -145,10 +151,15 @@ const deleteCardPopup = new PopupWithForm(
   (inputValues) => {
     if (!cardToDelete) return;
 
+    const submitButton = document.querySelector(
+      "#delete-card-modal .modal__button"
+    );
+    submitButton.textContent = "Deleting...";
+
     api
-      .deleteCard(cardToDelete.getId())
+      .deleteCard(cardToDelete._id)
       .then(() => {
-        cardToDelete.deleteCard();
+        cardToDelete._handleDeleteCard();
         deleteCardPopup.close();
         cardToDelete = null;
       })
@@ -161,6 +172,35 @@ function handleDeleteClick(card) {
   cardToDelete = card;
   deleteCardPopup.open();
 }
+
+const avatarFormEl = document.querySelector("#avatar-edit-modal .modal__form");
+const avatarFormValidator = new FormValidator(settings, avatarFormEl);
+avatarFormValidator.enableValidation();
+
+const avatarEditPopup = new PopupWithForm(
+  "#avatar-edit-modal",
+  (inputValues) => {
+    const submitButton = document.querySelector(
+      "#avatar-edit-modal .modal__button"
+    );
+    submitButton.textContent = "Saving...";
+    api
+      .setUserAvatar(inputValues.avatar)
+      .then((userData) => {
+        const profileImage = document.querySelector(".profile__image");
+        profileImage.src = userData.avatar;
+        avatarEditPopup.close();
+      })
+      .catch((err) => console.error(err));
+  }
+);
+avatarEditPopup.setEventListeners();
+
+const profileImageEditButton = document.querySelector(".profile__image-edit");
+profileImageEditButton.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
+  avatarEditPopup.open();
+});
 
 // event listeners
 profileEditPopup.setEventListeners();
@@ -191,10 +231,6 @@ function handleLikeClick(card) {
       })
       .catch((err) => console.error(err));
   }
-}
-
-function handleDeleteClick(card) {
-  deleteCardPopup.open(card);
 }
 
 function createCard(cardData) {
