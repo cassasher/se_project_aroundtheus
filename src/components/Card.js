@@ -74,21 +74,14 @@ export default class Card {
   }
 
   getView() {
-    console.log("getView called");
     this._cardElement = this._getTemplate();
 
     if (!this._cardElement) {
-      console.error("No card element created!");
       return null;
     }
 
     const cardImage = this._cardElement.querySelector(".card__image");
     const cardTitle = this._cardElement.querySelector(".card__name");
-
-    console.log("Setting card content:", {
-      link: this._link,
-      name: this._name,
-    });
 
     cardImage.src = this._link;
     cardImage.alt = this._name;

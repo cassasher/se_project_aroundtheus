@@ -26,6 +26,7 @@
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .profile__image-edit {
@@ -42,6 +43,7 @@
   transition: opacity 0.3s ease;
   cursor: pointer;
   border: none;
+  z-index: 2;
 }
 
 .profile__image-container:hover .profile__image-edit {

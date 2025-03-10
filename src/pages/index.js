@@ -34,8 +34,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     });
 
     const profileImage = document.querySelector(".profile__image");
+
     if (userData.avatar) {
-      profileImage.src = userData.avatar;
+      profileImage.src = require("../images/jacques-cousteau.png");
     }
 
     cardSection = new Section(
