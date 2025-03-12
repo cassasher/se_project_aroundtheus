@@ -16,11 +16,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.png')%>"
-            alt="profileimage"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img
+              src="<%=require('./images/jacques-cousteau.png')%>"
+              alt="profileimage"
+              class="profile__image"
+            />
+            <button type="button" class="profile__image-edit"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -150,5 +153,40 @@
         <button type="button" class="card__delete-button"></button>
       </li>
     </template>
+    <!-- Avatar Edit Modal -->
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form">
+          <div class="modal__form-fields">
+            <input
+              type="url"
+              placeholder="Profile picture URL"
+              name="avatar"
+              class="modal__input"
+              id="profile-avatar-input"
+              required
+            />
+            <span
+              class="modal__error modal__error_visible"
+              id="profile-avatar-input-error"
+            ></span>
+          </div>
+          <button class="modal__button modal__button_disabled">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Delete Card  Modal -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <form class="modal__form">
+          <button class="modal__button">Yes</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
