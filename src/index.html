@@ -155,16 +155,18 @@
     </template>
     <!-- Avatar Edit Modal -->
     <div class="modal" id="avatar-edit-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__container_avatar">
         <button type="button" class="modal__close"></button>
-        <p class="modal__heading">Change profile picture</p>
+        <p class="modal__heading modal__heading_avatar">
+          Change profile picture
+        </p>
         <form class="modal__form">
           <div class="modal__form-fields">
             <input
               type="url"
-              placeholder="Profile picture URL"
+              placeholder="https://somewebsite.com/someimage.jpg"
               name="avatar"
-              class="modal__input"
+              class="modal__input modal__input_avatar"
               id="profile-avatar-input"
               required
             />
@@ -173,18 +175,26 @@
               id="profile-avatar-input-error"
             ></span>
           </div>
-          <button class="modal__button modal__button_disabled">Save</button>
+          <button
+            class="modal__button modal__button_disabled modal__button_save"
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
 
     <!-- Delete Card  Modal -->
     <div class="modal" id="delete-card-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__container_delete-confirmation">
         <button type="button" class="modal__close"></button>
-        <p class="modal__heading">Are you sure?</p>
+        <p class="modal__heading modal__heading_delete-confirmation">
+          Are you sure?
+        </p>
         <form class="modal__form">
-          <button class="modal__button">Yes</button>
+          <button class="modal__button modal__button_delete-confirmation">
+            Yes
+          </button>
         </form>
       </div>
     </div>

@@ -155,6 +155,20 @@
   z-index: -1;
 }
 
+.modal__container_delete-confirmation {
+  height: 181px;
+  margin-top: 270px;
+}
+
+.modal__container_avatar {
+  margin-top: 224px;
+  height: 272px;
+}
+.modal__button_type_avatar:disabled {
+  background-color: #000;
+  color: #fff;
+  opacity: 0.3;
+}
 @media screen and (max-width: 620px) and (min-width: 320px) {
   .modal__close {
     width: 26px;

@@ -35,9 +35,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
     const profileImage = document.querySelector(".profile__image");
 
-    if (userData.avatar) {
-      profileImage.src = require("../images/jacques-cousteau.png");
-    }
+    profileImage.src = userData.avatar;
 
     cardSection = new Section(
       {
@@ -114,7 +112,10 @@ const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {
       addCardFormValidator.disableButton();
       newCardPopup.close();
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(err))
+    .finally(() => {
+      submitButton.textContent = "Save";
+    });
 });
 
 const profileEditPopup = new PopupWithForm(
@@ -192,9 +193,13 @@ const avatarEditPopup = new PopupWithForm(
         profileImage.src = userData.avatar;
         avatarEditPopup.close();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => {
+        submitButton.textContent = "Save";
+      });
   }
 );
+
 avatarEditPopup.setEventListeners();
 
 const profileImageEditButton = document.querySelector(".profile__image-edit");
@@ -214,7 +219,7 @@ function handleImageClick(data) {
 }
 
 function handleLikeClick(card) {
-  const cardId = card.getId();
+  const cardId = card.cardId();
   const isLiked = card.isLiked();
 
   if (isLiked) {

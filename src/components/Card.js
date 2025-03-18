@@ -11,7 +11,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._imageClick = handleImageClick;
     this._id = _id;
-    this.isLiked = isLiked;
+    this._isLiked = isLiked;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
   }
@@ -60,8 +60,12 @@ export default class Card {
     });
   }
 
+  cardId() {
+    return this._id;
+  }
+
   isLiked() {
-    return this.isLiked;
+    return this._isLiked;
   }
 
   _handleDeleteCard() {
@@ -71,6 +75,16 @@ export default class Card {
 
   _handleLikeButton() {
     this._likeButton.classList.toggle("card__like-button_active");
+  }
+
+  setLikeStatus(status) {
+    this._isLiked = status;
+
+    if (status) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
   }
 
   getView() {
